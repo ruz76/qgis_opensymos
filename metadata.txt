@@ -1,0 +1,37 @@
+# This file contains metadata for your plugin. Beginning
+# with version 1.8 this is the preferred way to supply information about a
+# plugin. The current method of embedding metadata in __init__.py will
+# be supported until version 2.0
+
+# This file should be included when you package your plugin.
+
+# Mandatory items:
+
+
+[general]
+name=Open Symos
+qgisMinimumVersion=2.0
+description=Calculates pollutants concentration according to SYMOS methodology
+about=Calculates pollutants concentration according to SYMOS methodology
+version=0.0.1
+author=Jan Ruzicka, Katerina Ruzickova
+email=jan.ruzicka.vsb@gmail.com
+
+# end of mandatory metadata
+
+# Optional items:
+
+changelog=2016/12/19 0.0.1 Initial release
+
+# tags are comma separated with spaces allowed
+tags=symos, open, pollutants, simulation
+homepage=https://github.com/ruz76/qgis_opensymos
+tracker=https://github.com/ruz76/qgis_opensymos/issues
+repository=https://github.com/ruz76/qgis_opensymos
+icon=opensymos.png
+# experimental flag
+experimental=False
+
+# deprecated flag (applies to the whole plugin, not just a single version
+deprecated=False
+

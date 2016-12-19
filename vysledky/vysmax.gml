@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ogr:FeatureCollection
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://ogr.maptools.org/ vysmax.xsd"
+     xmlns:ogr="http://ogr.maptools.org/"
+     xmlns:gml="http://www.opengis.net/gml">
+  <gml:boundedBy>
+    <gml:Box>
+      <gml:coord><gml:X>0</gml:X><gml:Y>0</gml:Y></gml:coord>
+      <gml:coord><gml:X>500</gml:X><gml:Y>500</gml:Y></gml:coord>
+    </gml:Box>
+  </gml:boundedBy>                                                                                       
+  <gml:featureMember>
+    <ogr:refbody fid="F0">
+      <ogr:geometryProperty><gml:Point><gml:coordinates>0,0,0</gml:coordinates></gml:Point></ogr:geometryProperty>
+      <ogr:id>0</ogr:id>
+      <ogr:c_tr1_r1>1.452517</ogr:c_tr1_r1>
+      <ogr:c_tr2_r1>2.213143</ogr:c_tr2_r1>
+      <ogr:c_tr2_r2>3.682959</ogr:c_tr2_r2>
+      <ogr:c_tr3_r1>2.289601</ogr:c_tr3_r1>
+      <ogr:c_tr3_r2>2.982654</ogr:c_tr3_r2>
+      <ogr:c_tr3_r3>1.77485</ogr:c_tr3_r3>
+      <ogr:c_tr4_r1>2.567817</ogr:c_tr4_r1>
+      <ogr:c_tr4_r2>2.272007</ogr:c_tr4_r2>
+      <ogr:c_tr4_r3>1.250595</ogr:c_tr4_r3>
+      <ogr:c_tr5_r1>2.091595</ogr:c_tr5_r1>
+      <ogr:c_tr5_r2>0.981995</ogr:c_tr5_r2>
+      <ogr:c_max>3.912943</ogr:c_max>
+    </ogr:refbody>
+  </gml:featureMember>
+  <gml:featureMember>
+    <ogr:refbody fid="F1">
+      <ogr:geometryProperty><gml:Point><gml:coordinates>0,500,0</gml:coordinates></gml:Point></ogr:geometryProperty>
+      <ogr:id>1</ogr:id>
+      <ogr:c_tr1_r1>1.452517</ogr:c_tr1_r1>
+      <ogr:c_tr2_r1>2.213143</ogr:c_tr2_r1>
+      <ogr:c_tr2_r2>3.682959</ogr:c_tr2_r2>
+      <ogr:c_tr3_r1>2.289601</ogr:c_tr3_r1>
+      <ogr:c_tr3_r2>2.982654</ogr:c_tr3_r2>
+      <ogr:c_tr3_r3>1.77485</ogr:c_tr3_r3>
+      <ogr:c_tr4_r1>2.567817</ogr:c_tr4_r1>
+      <ogr:c_tr4_r2>2.272007</ogr:c_tr4_r2>
+      <ogr:c_tr4_r3>1.250595</ogr:c_tr4_r3>
+      <ogr:c_tr5_r1>2.091595</ogr:c_tr5_r1>
+      <ogr:c_tr5_r2>0.981995</ogr:c_tr5_r2>
+      <ogr:c_max>3.912943</ogr:c_max>
+    </ogr:refbody>
+  </gml:featureMember>
+  <gml:featureMember>
+    <ogr:refbody fid="F2">
+      <ogr:geometryProperty><gml:Point><gml:coordinates>500,0,0</gml:coordinates></gml:Point></ogr:geometryProperty>
+      <ogr:id>2</ogr:id>
+      <ogr:c_tr1_r1>1.452517</ogr:c_tr1_r1>
+      <ogr:c_tr2_r1>2.213143</ogr:c_tr2_r1>
+      <ogr:c_tr2_r2>3.682959</ogr:c_tr2_r2>
+      <ogr:c_tr3_r1>2.289601</ogr:c_tr3_r1>
+      <ogr:c_tr3_r2>2.982654</ogr:c_tr3_r2>
+      <ogr:c_tr3_r3>1.77485</ogr:c_tr3_r3>
+      <ogr:c_tr4_r1>2.567817</ogr:c_tr4_r1>
+      <ogr:c_tr4_r2>2.272007</ogr:c_tr4_r2>
+      <ogr:c_tr4_r3>1.250595</ogr:c_tr4_r3>
+      <ogr:c_tr5_r1>2.091595</ogr:c_tr5_r1>
+      <ogr:c_tr5_r2>0.981995</ogr:c_tr5_r2>
+      <ogr:c_max>3.912943</ogr:c_max>
+    </ogr:refbody>
+  </gml:featureMember>
+  <gml:featureMember>
+    <ogr:refbody fid="F3">
+      <ogr:geometryProperty><gml:Point><gml:coordinates>500,500,0</gml:coordinates></gml:Point></ogr:geometryProperty>
+      <ogr:id>3</ogr:id>
+      <ogr:c_tr1_r1>1.452517</ogr:c_tr1_r1>
+      <ogr:c_tr2_r1>2.213143</ogr:c_tr2_r1>
+      <ogr:c_tr2_r2>3.682959</ogr:c_tr2_r2>
+      <ogr:c_tr3_r1>2.289601</ogr:c_tr3_r1>
+      <ogr:c_tr3_r2>2.982654</ogr:c_tr3_r2>
+      <ogr:c_tr3_r3>1.77485</ogr:c_tr3_r3>
+      <ogr:c_tr4_r1>2.567817</ogr:c_tr4_r1>
+      <ogr:c_tr4_r2>2.272007</ogr:c_tr4_r2>
+      <ogr:c_tr4_r3>1.250595</ogr:c_tr4_r3>
+      <ogr:c_tr5_r1>2.091595</ogr:c_tr5_r1>
+      <ogr:c_tr5_r2>0.981995</ogr:c_tr5_r2>
+      <ogr:c_max>3.912943</ogr:c_max>
+    </ogr:refbody>
+  </gml:featureMember>
+</ogr:FeatureCollection>

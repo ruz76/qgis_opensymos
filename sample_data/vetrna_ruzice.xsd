@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="vetrna_ruzice">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="5" minOccurs="5" name="trida_stability">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element maxOccurs="1" minOccurs="1" name="bezvetri">
+								<xs:complexType>
+									<xs:attribute name="value" type="xs:decimal"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element maxOccurs="3" minOccurs="1" name="rychlost">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="cetnosti">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:attribute name="s" type="xs:decimal"/>
+													<xs:attribute name="sv" type="xs:decimal"/>
+													<xs:attribute name="v" type="xs:decimal"/>
+													<xs:attribute name="jv" type="xs:decimal"/>
+													<xs:attribute name="j" type="xs:decimal"/>
+													<xs:attribute name="jz" type="xs:decimal"/>
+													<xs:attribute name="z" type="xs:decimal"/>
+													<xs:attribute name="sz" type="xs:decimal"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="value" type="xs:decimal"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="id" type="xs:int"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

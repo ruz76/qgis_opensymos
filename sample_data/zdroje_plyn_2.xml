@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<zdroje_body>
+
+  <zdroj id="0" x="-476903.0" y="-1084742.0" mnozstvi_latky="0.05" 
+    vyska_komina="20" teplota_spalin="126" prumer_komina="0.798" 
+    rychlost_spalin="8" relativni_rocni_vyuziti="1" objem_spalin="10" />
+  
+  <zdroj id="1" x="-476844.0" y="-1084832.0" mnozstvi_latky="0.06" 
+    vyska_komina="10" teplota_spalin="85" prumer_komina="0.5" 
+    rychlost_spalin="6" relativni_rocni_vyuziti="0.3" objem_spalin="8" />
+  
+  <zdroj id="2" x="-477034.0" y="-1084931.0" mnozstvi_latky="0.04" 
+  vyska_komina="5" teplota_spalin="70" prumer_komina="0.2" 
+  rychlost_spalin="5" relativni_rocni_vyuziti="0.4" objem_spalin="4" />
+
+</zdroje_body>
+

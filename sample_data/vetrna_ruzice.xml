@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vetrna_ruzice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xsi:noNamespaceSchemaLocation="vetrna_ruzice.xsd">
+
+  <trida_stability id="1">
+    <bezvetri value="0.0" />
+    <rychlost value="1.7">
+      <cetnosti s="9.32" sv="5.8" v="2.62" jv="7.54" j="1.20" jz="1.60" 
+      z="6.86" sz="1.14" />
+    </rychlost>
+    <rychlost value="5">
+      <cetnosti s="0" sv="0" v="0" jv="0" j="0" jz="0" z="0" sz="0" />
+    </rychlost>
+    <rychlost value="11">
+      <cetnosti s="0" sv="0" v="0" jv="0" j="0" jz="0" z="0" sz="0" />
+    </rychlost>
+  </trida_stability>
+    
+  <trida_stability id="2">
+    <bezvetri value="0.0" />
+    <rychlost value="1.7">
+     <cetnosti s="1.0" sv="3.0" v="2.0" jv="3.0" j="2.0" jz="2.0" z="10.0" 
+      sz="0.9" />
+    </rychlost>
+    <rychlost value="5">
+      <cetnosti s="0.4" sv="0.7" v="0.5" jv="1.0" j="0.7" jz="1.0" z="0.0" 
+      sz="0.2" />
+    </rychlost>
+    <rychlost value="11">
+      <cetnosti s="0" sv="0" v="0" jv="0" j="0" jz="0" z="0" sz="0" />
+    </rychlost>
+  </trida_stability>
+  
+  <trida_stability id="3">
+    <bezvetri value="0.0" />
+    <rychlost value="1.7">
+      <cetnosti s="0.18" sv="1.0" v="0.4" jv="1.0" j="0.1" jz="1.0" 
+      z="8.0" sz="0.03" />
+    </rychlost>
+    <rychlost value="5">
+      <cetnosti s="0.07" sv="0.06" v="0.01" jv="0.3" j="0.04" jz="0.2" z="10.0" 
+      sz="0.0" />
+    </rychlost>
+    <rychlost value="11">
+      <cetnosti s="0.16" sv="0.16" v="0.06" jv="0.33" j="0.01" jz="0.06" 
+      z="0.48" sz="0.04" />
+    </rychlost>
+  </trida_stability>
+  
+  <trida_stability id="4">
+    <bezvetri value="0.0" />
+    <rychlost value="1.7">
+      <cetnosti s="0.0" sv="0.2" v="0.01" jv="0.6" j="0.02" jz="0.5" z="0.7" sz="0.0" />
+    </rychlost>
+    <rychlost value="5">
+      <cetnosti s="0.0" sv="0.0" v="0.0" jv="0.03" j="0.0" jz="0.01" z="0.0" 
+      sz="0.0" />
+    </rychlost>
+    <rychlost value="11">
+      <cetnosti s="2.3" sv="1.43" v="0.34" jv="0.59" j="0.27" jz="0.22" z="4.05" 
+      sz="0.13" />
+    </rychlost>
+  </trida_stability>
+  
+  <trida_stability id="5">
+    <bezvetri value="0.0" />
+    <rychlost value="1.7">
+      <cetnosti s="0.0" sv="0.04" v="0.0" jv="0.05" j="0.0" jz="0.07" z="0.03" 
+      sz="0.0" />
+    </rychlost>
+    <rychlost value="5">
+      <cetnosti s="0.11" sv="0.0" v="0.02" jv="0.0" j="0.02" jz="0.0" z="0.08" 
+      sz="0.01" />
+    </rychlost>
+    <rychlost value="11">
+      <cetnosti s="0" sv="0" v="0" jv="0" j="0" jz="0" z="0" sz="0" />
+    </rychlost>
+  </trida_stability>
+  
+</vetrna_ruzice>
+
