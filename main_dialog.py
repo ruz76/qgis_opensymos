@@ -48,6 +48,8 @@ class MainDialog(QtGui.QDialog, FORM_CLASS):
         self.btnTeren.clicked.connect(self.selectTerenFile)
         self.btnRuzice.clicked.connect(self.selectRuziceFile)
         self.btnCalculate.clicked.connect(self.calculate)
+        self.btnUlozit.clicked.connect(self.selectConfigFileSave)
+        self.btnNacist.clicked.connect(self.selectConfigFileOpen)
     def selectZdrojFile(self):
         self.fileDialog = QtGui.QFileDialog(self)
         self.txtZdroj.setText(self.fileDialog.getOpenFileName())
@@ -56,18 +58,39 @@ class MainDialog(QtGui.QDialog, FORM_CLASS):
         self.txtTeren.setText(self.fileDialog.getOpenFileName())		
     def selectRuziceFile(self):
         self.fileDialog = QtGui.QFileDialog(self)
-        self.txtRuzice.setText(self.fileDialog.getOpenFileName())				
+        self.txtRuzice.setText(self.fileDialog.getOpenFileName())
+    def selectConfigFileSave(self):
+        self.fileDialog = QtGui.QFileDialog(self)
+        path = self.fileDialog.getSaveFileName()
+        if path != '':
+            f = open(path, 'w')		
+            f.write(str(self.cmbLatka.currentIndex())+'\n')
+            f.write(str(self.cmbTypVypoctu.currentIndex())+'\n')
+            f.write(self.txtZdroj.text()+'\n')		
+            f.write(self.txtTeren.text()+'\n')		
+            f.write(self.txtTeren2.text()+'\n')				
+            f.write(str(self.cmbReceptory.currentIndex())+'\n')
+            f.write(self.txtReceptoryVyska.text()+'\n')
+            f.write(self.txtRuzice.text()+'\n')
+            f.write(self.txtLimit.text()+'\n')
+            f.close()
+    def selectConfigFileOpen(self):
+        self.fileDialog = QtGui.QFileDialog(self)
+        path = self.fileDialog.getOpenFileName()
+        if path != '':
+            f = open(path, 'r')		
+            self.cmbLatka.setCurrentIndex(int(f.readline()))
+            self.cmbTypVypoctu.setCurrentIndex(int(f.readline()))
+            self.txtZdroj.setText(f.readline().strip('\n\r'))		
+            self.txtTeren.setText(f.readline().strip('\n\r'))
+            self.txtTeren2.setText(f.readline().strip('\n\r'))
+            self.cmbReceptory.setCurrentIndex(int(f.readline()))
+            self.txtReceptoryVyska.setText(f.readline().strip('\n\r'))
+            self.txtRuzice.setText(f.readline().strip('\n\r'))
+            self.txtLimit.setText(f.readline().strip('\n\r'))                
+            f.close()
     def init_param(self):
-        self.main = Main()
-        self.zdroje = None
-        self.teren = None
-        self.ref_body = None
-        self.vetrna_ruzice = None
-        self.vyska_body = None
-        self.imise_limit = None
-        self.vyska_l = 0.0
-        self.typ_vypocet_select = None
-        self.latka_prom_select = None
+        self.wd = '/tmp/'
     def populateReceptory(self):
         root_node = QgsProject.instance().layerTreeRoot()
         tree_layers = root_node.findLayers()
@@ -79,17 +102,27 @@ class MainDialog(QtGui.QDialog, FORM_CLASS):
                         self.cmbReceptory.addItem(layer.name())
                 except:
                     pass
-    def calculate(self):					
+    def calculate(self):
+		self.main = Main()					
 		self.main.inicializuj_zdroje(self.txtZdroj.text())
 		layer = QgsMapLayerRegistry.instance().mapLayersByName(self.cmbReceptory.currentText())[0]
+		#TODO Nastavit osetreni vstupu
 		self.main.inicializuj_ref_body(layer)
 		self.main.inicializuj_teren(self.txtTeren.text())
-		self.main.vypocti(self.cmbLatka.currentText(), 1, self.imise_limit, self.vyska_l, self.vyska_body)					
+		if self.cmbTypVypoctu.currentIndex() == 0:
+		    self.main.vypocti(self.txtStatus, self.progressBar, self.cmbLatka.currentText(), self.cmbTypVypoctu.currentIndex() + 1, float(self.txtLimit.text()), float(self.txtReceptoryVyska.text()), float(self.txtTeren2.text()))
+		if self.cmbTypVypoctu.currentIndex() == 1:
+		    self.main.inicializuj_vetrnou_ruzici(self.txtRuzice.text())
+		    self.main.vypocti(self.txtStatus, self.progressBar, self.cmbLatka.currentText(), self.cmbTypVypoctu.currentIndex() + 1, float(self.txtLimit.text()), float(self.txtReceptoryVyska.text()), float(self.txtTeren2.text()))
+		if self.cmbTypVypoctu.currentIndex() == 2:
+		    self.main.inicializuj_vetrnou_ruzici(self.txtRuzice.text())
+		    self.main.vypocti(self.txtStatus, self.progressBar, self.cmbLatka.currentText(), self.cmbTypVypoctu.currentIndex() + 1, float(self.txtLimit.text()), float(self.txtReceptoryVyska.text()), float(self.txtTeren2.text()))				
 		x = self.cmbLatka.currentText() + "_" + str(uuid.uuid1())		
 		x = x.replace("-", "_")
 		#shppath = os.path.join(os.path.dirname(__file__), "vysledky/" + x + ".shp")
+		#TODO Nastavit temp dir
 		shppath = "/tmp/" + x + ".shp"
-		self.main.export(1,"shp",shppath)
+		self.main.export(self.cmbTypVypoctu.currentIndex() + 1,"shp",shppath)
 		layer = QgsVectorLayer(shppath, x, "ogr")
 		if not layer.isValid():
 			print "Layer failed to load!"
@@ -103,3 +136,7 @@ class MainDialog(QtGui.QDialog, FORM_CLASS):
 			print geom.asPoint().x()
 			print geom.asPoint().y()
 			print "Feature ID %d: " % feature.id()
+    def showMessage(self, mesage):					
+		msgBox = QtGui.QMessageBox(self);
+		msgBox.setText(message);
+		msgBox.open(self);

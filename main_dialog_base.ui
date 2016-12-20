@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>655</width>
-    <height>539</height>
+    <width>654</width>
+    <height>584</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <rect>
      <x>100</x>
      <y>10</y>
-     <width>441</width>
+     <width>541</width>
      <height>29</height>
     </rect>
    </property>
@@ -117,7 +117,7 @@
    <property name="geometry">
     <rect>
      <x>100</x>
-     <y>120</y>
+     <y>90</y>
      <width>441</width>
      <height>27</height>
     </rect>
@@ -127,8 +127,8 @@
    <property name="geometry">
     <rect>
      <x>550</x>
-     <y>120</y>
-     <width>95</width>
+     <y>90</y>
+     <width>91</width>
      <height>27</height>
     </rect>
    </property>
@@ -153,7 +153,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>60</y>
+     <y>50</y>
      <width>81</width>
      <height>17</height>
     </rect>
@@ -166,8 +166,8 @@
    <property name="geometry">
     <rect>
      <x>100</x>
-     <y>50</y>
-     <width>441</width>
+     <y>40</y>
+     <width>541</width>
      <height>29</height>
     </rect>
    </property>
@@ -191,7 +191,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>120</y>
+     <y>90</y>
      <width>81</width>
      <height>17</height>
     </rect>
@@ -204,7 +204,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>90</y>
+     <y>70</y>
      <width>631</width>
      <height>16</height>
     </rect>
@@ -217,7 +217,7 @@
    <property name="geometry">
     <rect>
      <x>550</x>
-     <y>200</y>
+     <y>140</y>
      <width>95</width>
      <height>27</height>
     </rect>
@@ -230,7 +230,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>200</y>
+     <y>140</y>
      <width>81</width>
      <height>17</height>
     </rect>
@@ -243,7 +243,7 @@
    <property name="geometry">
     <rect>
      <x>100</x>
-     <y>200</y>
+     <y>140</y>
      <width>441</width>
      <height>27</height>
     </rect>
@@ -253,7 +253,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>160</y>
+     <y>120</y>
      <width>631</width>
      <height>16</height>
     </rect>
@@ -266,17 +266,20 @@
    <property name="geometry">
     <rect>
      <x>100</x>
-     <y>240</y>
-     <width>441</width>
+     <y>170</y>
+     <width>541</width>
      <height>27</height>
     </rect>
+   </property>
+   <property name="text">
+    <string>250</string>
    </property>
   </widget>
   <widget class="QLabel" name="lblTeren2">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>240</y>
+     <y>170</y>
      <width>81</width>
      <height>17</height>
     </rect>
@@ -289,7 +292,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>280</y>
+     <y>200</y>
      <width>631</width>
      <height>16</height>
     </rect>
@@ -302,7 +305,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>310</y>
+     <y>230</y>
      <width>81</width>
      <height>17</height>
     </rect>
@@ -315,8 +318,8 @@
    <property name="geometry">
     <rect>
      <x>100</x>
-     <y>300</y>
-     <width>441</width>
+     <y>220</y>
+     <width>541</width>
      <height>29</height>
     </rect>
    </property>
@@ -324,21 +327,21 @@
   <widget class="QPushButton" name="btnCalculate">
    <property name="geometry">
     <rect>
-     <x>540</x>
-     <y>500</y>
+     <x>550</x>
+     <y>540</y>
      <width>95</width>
      <height>27</height>
     </rect>
    </property>
    <property name="text">
-    <string>Makej</string>
+    <string>Výpočet</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btnRuzice">
    <property name="geometry">
     <rect>
      <x>550</x>
-     <y>380</y>
+     <y>310</y>
      <width>95</width>
      <height>27</height>
     </rect>
@@ -351,7 +354,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>350</y>
+     <y>290</y>
      <width>631</width>
      <height>16</height>
     </rect>
@@ -364,7 +367,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>380</y>
+     <y>310</y>
      <width>81</width>
      <height>17</height>
     </rect>
@@ -377,10 +380,150 @@
    <property name="geometry">
     <rect>
      <x>100</x>
-     <y>380</y>
+     <y>310</y>
      <width>441</width>
      <height>27</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblReceptoryVyska">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>260</y>
+     <width>81</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Výška</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="txtReceptoryVyska">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>260</y>
+     <width>541</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnUlozit">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>540</y>
+     <width>95</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Uložit</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnNacist">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>540</y>
+     <width>95</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Nacist</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblLimit">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>360</y>
+     <width>81</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Limit</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="txtLimit">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>360</y>
+     <width>541</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line_5">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>340</y>
+     <width>631</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblStatus">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>410</y>
+     <width>81</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Stav</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="txtStatus">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>440</y>
+     <width>541</width>
+     <height>71</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QProgressBar" name="progressBar">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>410</y>
+     <width>541</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="value">
+    <number>0</number>
+   </property>
+  </widget>
+  <widget class="Line" name="line_6">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>390</y>
+     <width>631</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
    </property>
   </widget>
  </widget>

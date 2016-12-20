@@ -61,9 +61,14 @@ class Main:
             sys.exit()
     
         
-    def vypocti(self, latka, typ_vypocet, imise_limit, vyska_l, vyska_body):
+    def vypocti(self, status, progress, latka, typ_vypocet, imise_limit, vyska_l, vyska_body):
         start_time = time.time()
-        print "Probiha vypocet, cekejte prosim..."
+        status.append("Typ: " + str(typ_vypocet))
+        status.append("Latka: " + latka)
+        status.append("Limit: " + str(imise_limit))
+        status.append("Vyska receptoru: " + str(vyska_l))
+        status.append("Vyska terenu: " + str(vyska_body))
+        status.append("Probiha vypocet, cekejte prosim...")
         
         if vyska_body == None:        
             self.db_zdroje.set_z_zdroje(self.teren)
@@ -74,39 +79,38 @@ class Main:
         
         if typ_vypocet == 1:
             if vyska_body == None:  
-                self.v.vypocti_koncentraci(1, latka, self.db_ref_body, 
+                self.v.vypocti_koncentraci(status, progress, 1, latka, self.db_ref_body, 
                                        self.db_zdroje, self.teren, 
                                        None, None, vyska_l, vyska_body)
             else:
-                self.v.vypocti_koncentraci(1, latka, self.db_ref_body, 
+                self.v.vypocti_koncentraci(status, progress, 1, latka, self.db_ref_body, 
                                        self.db_zdroje, None, 
                                        None, None, vyska_l, vyska_body)
         elif typ_vypocet == 2:
             if vyska_body == None:  
-                self.v.vypocti_koncentraci(2, latka, self.db_ref_body, 
+                self.v.vypocti_koncentraci(status, progress, 2, latka, self.db_ref_body, 
                                        self.db_zdroje, self.teren, 
                                        self.vetrna_ruzice, None, vyska_l, 
                                        vyska_body)
             else:
-                self.v.vypocti_koncentraci(2, latka, self.db_ref_body, 
+                self.v.vypocti_koncentraci(status, progress, 2, latka, self.db_ref_body, 
                                        self.db_zdroje, None, 
                                        self.vetrna_ruzice, None, vyska_l, 
                                        vyska_body)      
         elif typ_vypocet == 3:
             if vyska_body == None:  
-                self.v.vypocti_koncentraci(3, latka, self.db_ref_body, 
+                self.v.vypocti_koncentraci(status, progress, 3, latka, self.db_ref_body, 
                                        self.db_zdroje, self.teren, 
                                        self.vetrna_ruzice, imise_limit, vyska_l, 
                                        vyska_body)
             else:
-                self.v.vypocti_koncentraci(3, latka, self.db_ref_body, 
+                self.v.vypocti_koncentraci(status, progress, 3, latka, self.db_ref_body, 
                                        self.db_zdroje, None, 
                                        self.vetrna_ruzice, imise_limit, vyska_l, 
                                        vyska_body)
             
         end_time = time.time()
-        print ("Vypocet hotov, proces trval " + str(end_time - start_time) 
-               + " sekund")
+        status.append("Vypocet hotov, proces trval " + str(end_time - start_time) + " sekund")
     
     
     def export(self, typ_vysledky, typ_export, soubor):

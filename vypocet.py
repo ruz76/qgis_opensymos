@@ -16,6 +16,10 @@ import numpy as np
 from scipy import integrate
 from vysledky import Vysledky
 from vysledek import Vysledek
+from PyQt4.QtCore import *
+from PyQt4.QtGui import *
+from qgis.core import *
+from qgis.gui import *
 
 class Vypocet:
     
@@ -324,7 +328,7 @@ class Vypocet:
     
 #    "hlavni metoda - vypocet znecisteni"
         
-    def vypocti_koncentraci(self, typ_vypocet, latka, refbody, zdroje, 
+    def vypocti_koncentraci(self, status, progress, typ_vypocet, latka, refbody, zdroje, 
                             teren, vetrna_ruzice, 
                             imise_limit, vyska_l, vyska_body):
         
@@ -344,9 +348,12 @@ class Vypocet:
             profily = vysky[0]
             max_vysky = vysky[1]
             hrana_pixel = teren.get_hrana_pixel()
-        
+        progress.setMinimum(0)
+        progress.setMaximum(len(refbody_local)-1)
         for k in range(len(refbody_local)): 
 #            pro kazdy ref.bod
+            progress.setValue(k)
+            QCoreApplication.processEvents()
             r = refbody_local[k]
             doby_tridy = []
             c_tridy = []
