@@ -13,7 +13,7 @@
 
 import math
 import numpy as np
-from scipy import integrate
+#from scipy import integrate
 from vysledky import Vysledky
 from vysledek import Vysledek
 from PyQt4.QtCore import *
@@ -266,10 +266,18 @@ class Vypocet:
             krok_dmt = []
             i = 0
             for i in range(len(profil)):
-                i += hrana_pixel
-                krok_dmt.append(float(i))
+                #i += hrana_pixel
+                krok_dmt.append(float((i+1)*hrana_pixel))
 
-            obsah_krivka = integrate.simps(profil_korekce, krok_dmt)
+            #obsah_krivka = integrate.simps(profil_korekce, krok_dmt)
+            #print profil_korekce
+            #print krok_dmt
+            #print obsah_krivka
+            #print hrana_pixel
+            #TODO - udelat spravnou integraci - takto je to dost nepresene, mozna pouzit tu z scipy - proste jen prepsat
+            b = sum(profil_korekce)
+            obsah_krivka = b * 0.9 * hrana_pixel
+            #print obsah_krivka
             theta = (1/(x*(z_r - z_z)))*obsah_krivka
             if theta < 0:
                 theta = 0

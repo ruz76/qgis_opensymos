@@ -24,6 +24,7 @@
 import os
 import qgis
 import uuid
+import tempfile
 from qgis.core import *
 from main import Main
 
@@ -55,7 +56,7 @@ class MainDialog(QtGui.QDialog, FORM_CLASS):
         self.txtZdroj.setText(self.fileDialog.getOpenFileName())
     def selectTerenFile(self):
         self.fileDialog = QtGui.QFileDialog(self)
-        self.txtTeren.setText(self.fileDialog.getOpenFileName())		
+        self.txtTeren.setText(self.fileDialog.getOpenFileName())        
     def selectRuziceFile(self):
         self.fileDialog = QtGui.QFileDialog(self)
         self.txtRuzice.setText(self.fileDialog.getOpenFileName())
@@ -63,12 +64,12 @@ class MainDialog(QtGui.QDialog, FORM_CLASS):
         self.fileDialog = QtGui.QFileDialog(self)
         path = self.fileDialog.getSaveFileName()
         if path != '':
-            f = open(path, 'w')		
+            f = open(path, 'w')        
             f.write(str(self.cmbLatka.currentIndex())+'\n')
             f.write(str(self.cmbTypVypoctu.currentIndex())+'\n')
-            f.write(self.txtZdroj.text()+'\n')		
-            f.write(self.txtTeren.text()+'\n')		
-            f.write(self.txtTeren2.text()+'\n')				
+            f.write(self.txtZdroj.text()+'\n')        
+            f.write(self.txtTeren.text()+'\n')        
+            f.write(self.txtTeren2.text()+'\n')                
             f.write(str(self.cmbReceptory.currentIndex())+'\n')
             f.write(self.txtReceptoryVyska.text()+'\n')
             f.write(self.txtRuzice.text()+'\n')
@@ -78,10 +79,10 @@ class MainDialog(QtGui.QDialog, FORM_CLASS):
         self.fileDialog = QtGui.QFileDialog(self)
         path = self.fileDialog.getOpenFileName()
         if path != '':
-            f = open(path, 'r')		
+            f = open(path, 'r')        
             self.cmbLatka.setCurrentIndex(int(f.readline()))
             self.cmbTypVypoctu.setCurrentIndex(int(f.readline()))
-            self.txtZdroj.setText(f.readline().strip('\n\r'))		
+            self.txtZdroj.setText(f.readline().strip('\n\r'))        
             self.txtTeren.setText(f.readline().strip('\n\r'))
             self.txtTeren2.setText(f.readline().strip('\n\r'))
             self.cmbReceptory.setCurrentIndex(int(f.readline()))
@@ -90,7 +91,7 @@ class MainDialog(QtGui.QDialog, FORM_CLASS):
             self.txtLimit.setText(f.readline().strip('\n\r'))                
             f.close()
     def init_param(self):
-        self.wd = '/tmp/'
+        self.wd = '/tmp/' #tempfile.gettempdir()
     def populateReceptory(self):
         root_node = QgsProject.instance().layerTreeRoot()
         tree_layers = root_node.findLayers()
@@ -103,40 +104,72 @@ class MainDialog(QtGui.QDialog, FORM_CLASS):
                 except:
                     pass
     def calculate(self):
-		self.main = Main()					
-		self.main.inicializuj_zdroje(self.txtZdroj.text())
-		layer = QgsMapLayerRegistry.instance().mapLayersByName(self.cmbReceptory.currentText())[0]
-		#TODO Nastavit osetreni vstupu
-		self.main.inicializuj_ref_body(layer)
-		self.main.inicializuj_teren(self.txtTeren.text())
-		if self.cmbTypVypoctu.currentIndex() == 0:
-		    self.main.vypocti(self.txtStatus, self.progressBar, self.cmbLatka.currentText(), self.cmbTypVypoctu.currentIndex() + 1, float(self.txtLimit.text()), float(self.txtReceptoryVyska.text()), float(self.txtTeren2.text()))
-		if self.cmbTypVypoctu.currentIndex() == 1:
-		    self.main.inicializuj_vetrnou_ruzici(self.txtRuzice.text())
-		    self.main.vypocti(self.txtStatus, self.progressBar, self.cmbLatka.currentText(), self.cmbTypVypoctu.currentIndex() + 1, float(self.txtLimit.text()), float(self.txtReceptoryVyska.text()), float(self.txtTeren2.text()))
-		if self.cmbTypVypoctu.currentIndex() == 2:
-		    self.main.inicializuj_vetrnou_ruzici(self.txtRuzice.text())
-		    self.main.vypocti(self.txtStatus, self.progressBar, self.cmbLatka.currentText(), self.cmbTypVypoctu.currentIndex() + 1, float(self.txtLimit.text()), float(self.txtReceptoryVyska.text()), float(self.txtTeren2.text()))				
-		x = self.cmbLatka.currentText() + "_" + str(uuid.uuid1())		
-		x = x.replace("-", "_")
-		#shppath = os.path.join(os.path.dirname(__file__), "vysledky/" + x + ".shp")
-		#TODO Nastavit temp dir
-		shppath = "/tmp/" + x + ".shp"
-		self.main.export(self.cmbTypVypoctu.currentIndex() + 1,"shp",shppath)
-		layer = QgsVectorLayer(shppath, x, "ogr")
-		if not layer.isValid():
-			print "Layer failed to load!"
-		else:
-			QgsMapLayerRegistry.instance().addMapLayer(layer)
-    def getReceptory(self):					
+        self.main = Main()
+        if self.txtZdroj.text() == '':
+            self.showMessage(u"Nebyl vybrán soubor se zdroji. Není možno počítat.")
+            return
+        else:                    
+            self.main.inicializuj_zdroje(self.txtZdroj.text())
+        layers = QgsMapLayerRegistry.instance().mapLayersByName(self.cmbReceptory.currentText()) 
+        layer = ''
+        if not layers:
+            self.showMessage(u"Nebyla nalezena vrstva s receptory. Není možno počítat.")
+            return
+        else:
+            layer = layers[0]
+        if layer == '':
+            self.showMessage(u"Nebyla vybrána vrstva s receptory. Není možno počítat.")
+            return
+        else:
+            self.main.inicializuj_ref_body(layer)
+        fixed_h = None
+        if self.txtTeren.text() == '':
+            if self.txtTeren2.text() == '':
+                self.showMessage(u"Nebyl vybrán terén ani nastavena fixní výška. Není možno počítat.")
+                return
+            else:
+                fixed_h = float(self.txtTeren2.text())                                
+        else:
+            self.main.inicializuj_teren(self.txtTeren.text())
+        if self.cmbTypVypoctu.currentIndex() == 1 or self.cmbTypVypoctu.currentIndex() == 2:
+            if self.txtRuzice.text() == '':
+                self.showMessage(u"Nebyla vybrána větrná růžice. Není možno počítat.")
+                return
+            else:
+                self.main.inicializuj_vetrnou_ruzici(self.txtRuzice.text())
+        if self.cmbTypVypoctu.currentIndex() == 2:
+            if self.txtLimit.text() == '':
+                self.showMessage(u"Nebyl nastaven limit Není možno počítat.")
+                return
+        self.main.vypocti(self.txtStatus, self.progressBar, self.cmbLatka.currentText(), self.cmbTypVypoctu.currentIndex() + 1, float(self.txtLimit.text()), float(self.txtReceptoryVyska.text()), fixed_h)            
+        typ_zkr = ''
+        if self.cmbTypVypoctu.currentIndex() == 0:
+            typ_zkr = 'max'
+        if self.cmbTypVypoctu.currentIndex() == 1:
+            typ_zkr = 'prum'
+        if self.cmbTypVypoctu.currentIndex() == 2:
+            typ_zkr = 'limit'
+        x = self.cmbLatka.currentText() + "_" + typ_zkr + "_" + str(uuid.uuid1())        
+        x = x.replace("-", "_")
+        #shppath = os.path.join(os.path.dirname(__file__), "vysledky/" + x + ".shp")
+        #TODO Nastavit temp dir
+        print str(tempfile.gettempdir())
+        shppath = os.path.join(tempfile.gettempdir(), x + ".shp")
+        self.main.export(self.cmbTypVypoctu.currentIndex() + 1,"shp",shppath)
+        layer = QgsVectorLayer(shppath, x, "ogr")
+        if not layer.isValid():
+            print "Layer failed to load!"
+        else:
+            QgsMapLayerRegistry.instance().addMapLayer(layer)
+    def getReceptory(self):                    
         layer = QgsMapLayerRegistry.instance().mapLayersByName(self.cmbReceptory.currentText())[0]
         iter = layer.getFeatures()
         for feature in iter:
-			geom = feature.geometry()
-			print geom.asPoint().x()
-			print geom.asPoint().y()
-			print "Feature ID %d: " % feature.id()
-    def showMessage(self, mesage):					
-		msgBox = QtGui.QMessageBox(self);
-		msgBox.setText(message);
-		msgBox.open(self);
+            geom = feature.geometry()
+            print geom.asPoint().x()
+            print geom.asPoint().y()
+            print "Feature ID %d: " % feature.id()
+    def showMessage(self, message):                    
+        msgBox = QtGui.QMessageBox(self);
+        msgBox.setText(message);
+        msgBox.open();

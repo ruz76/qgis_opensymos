@@ -63,12 +63,15 @@ class Main:
         
     def vypocti(self, status, progress, latka, typ_vypocet, imise_limit, vyska_l, vyska_body):
         start_time = time.time()
-        status.append("Typ: " + str(typ_vypocet))
-        status.append("Latka: " + latka)
-        status.append("Limit: " + str(imise_limit))
-        status.append("Vyska receptoru: " + str(vyska_l))
-        status.append("Vyska terenu: " + str(vyska_body))
-        status.append("Probiha vypocet, cekejte prosim...")
+        status.append(u"Typ: " + str(typ_vypocet))
+        status.append(u"Látka: " + latka)
+        status.append(u"Limit: " + str(imise_limit))
+        status.append(u"Výška receptorů: " + str(vyska_l))
+        if vyska_body == None:
+            status.append(u"Výška terénu: z vrstvy DEM")
+        else:        
+            status.append(u"Výška terénu: " + str(vyska_body))
+        status.append(u"Probíhá výpočet, čekejte prosím.")
         
         if vyska_body == None:        
             self.db_zdroje.set_z_zdroje(self.teren)
@@ -110,7 +113,7 @@ class Main:
                                        vyska_body)
             
         end_time = time.time()
-        status.append("Vypocet hotov, proces trval " + str(end_time - start_time) + " sekund")
+        status.append(u"Výpočet hotov, proces trval " + str(int(end_time - start_time)) + " sekund")
     
     
     def export(self, typ_vysledky, typ_export, soubor):
