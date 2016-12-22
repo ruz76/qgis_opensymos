@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 """
 /***************************************************************************
- BabaDialog
-                                 A QGIS plugin
- Baba
+    Open Symos
+			A QGIS plugin
+ Calculates pollutants concentration according to SYMOS methodology.
+ This plugin was developed by Jan Ruzicka and Katerina Ruzickova.
+ The plugin is baed on Open Symos software developed by Karel Psota.
                              -------------------
         begin                : 2016-12-19
-        git sha              : $Format:%H$
-        copyright            : (C) 2016 by Baba
-        email                : baba@baba.cz
+        copyright            : (C) 2016 by Jan Ruzicka, Katerina Ruzickova
+        email                : jan.ruzicka.vsb@gmail.com, katerina.ruzickova@vsb.cz
+
  ***************************************************************************/
 
 /***************************************************************************
@@ -106,6 +108,8 @@ class MainDialog(QtGui.QDialog, FORM_CLASS):
     def calculate(self):
         self.main = Main()
         if self.txtZdroj.text() == '':
+            #TODO
+            #http://portal.cenia.cz/irz/unikyPrenosy.jsp?Rok=2015&UnikOvzdusi=1&Typ=bezny&Mnozstvi=*&MetodaC=1&MetodaM=1&MetodaE=1&LatkaNazev=*&Ohlasovatel=&OhlasovatelTyp=subjektNazev&EPRTR=*&NACE=*&Lokalita=cr&Adresa=&Kraj=*&CZNUTS=*&SeskupitDle=subjektu&Razeni=vzestupne&OKEC=*
             self.showMessage(u"Nebyl vybrán soubor se zdroji. Není možno počítat.")
             return
         else:                    

@@ -52,7 +52,7 @@ class Main:
     def inicializuj_ref_body(self, layer):
         self.db_ref_body.vytvor_db(layer)
                   
-        
+ 
     def generuj_sit(self, tl_x, tl_y, lr_x, lr_y, krok):
         self.db_ref_body.generuj_sit(tl_x, tl_y, lr_x, lr_y, krok)
         if len(self.db_ref_body.get_ref_body()) == 0:
