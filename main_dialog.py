@@ -91,6 +91,7 @@ class MainDialog(QtGui.QDialog, FORM_CLASS):
     def init_param(self):
         self.wd = '/tmp/' #tempfile.gettempdir()
     def populateReceptory(self):
+        self.cmbReceptory.clear()
         root_node = QgsProject.instance().layerTreeRoot()
         tree_layers = root_node.findLayers()
         for tree_layer in tree_layers:
@@ -102,6 +103,7 @@ class MainDialog(QtGui.QDialog, FORM_CLASS):
                 except:
                     pass
     def populateTeren(self):
+        self.cmbTeren.clear()
         root_node = QgsProject.instance().layerTreeRoot()
         tree_layers = root_node.findLayers()
         for tree_layer in tree_layers:
