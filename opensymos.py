@@ -79,14 +79,8 @@ class OpenSYMOS:
 
     def calculate(self):
         locale = ""
+        self.dlg.populateTeren()
         self.dlg.populateReceptory()
-        #self.dlg.cmbReceptory.addItem("AAA")
         self.dlg.show()
         # Run the dialog event loop
         result = self.dlg.exec_()
-        # See if OK was pressed
-        if result:
-            print self.dlg.cmbLatka.currentText()
-        #okno = Tk()
-        #gui = Gui(okno)
-        #okno.mainloop()

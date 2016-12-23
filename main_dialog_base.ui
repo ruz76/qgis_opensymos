@@ -213,19 +213,6 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QPushButton" name="btnTeren">
-   <property name="geometry">
-    <rect>
-     <x>550</x>
-     <y>140</y>
-     <width>95</width>
-     <height>27</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Procházet</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="lblTeren">
    <property name="geometry">
     <rect>
@@ -237,16 +224,6 @@
    </property>
    <property name="text">
     <string>Terén</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="txtTeren">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>140</y>
-     <width>441</width>
-     <height>27</height>
-    </rect>
    </property>
   </widget>
   <widget class="Line" name="line_2">
@@ -524,6 +501,16 @@
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="cmbTeren">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>140</y>
+     <width>541</width>
+     <height>29</height>
+    </rect>
    </property>
   </widget>
  </widget>

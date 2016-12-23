@@ -48,7 +48,6 @@ class MainDialog(QtGui.QDialog, FORM_CLASS):
         self.init_param()
         self.setupUi(self)
         self.btnZdroj.clicked.connect(self.selectZdrojFile)
-        self.btnTeren.clicked.connect(self.selectTerenFile)
         self.btnRuzice.clicked.connect(self.selectRuziceFile)
         self.btnCalculate.clicked.connect(self.calculate)
         self.btnUlozit.clicked.connect(self.selectConfigFileSave)
@@ -56,9 +55,6 @@ class MainDialog(QtGui.QDialog, FORM_CLASS):
     def selectZdrojFile(self):
         self.fileDialog = QtGui.QFileDialog(self)
         self.txtZdroj.setText(self.fileDialog.getOpenFileName())
-    def selectTerenFile(self):
-        self.fileDialog = QtGui.QFileDialog(self)
-        self.txtTeren.setText(self.fileDialog.getOpenFileName())        
     def selectRuziceFile(self):
         self.fileDialog = QtGui.QFileDialog(self)
         self.txtRuzice.setText(self.fileDialog.getOpenFileName())
@@ -70,7 +66,7 @@ class MainDialog(QtGui.QDialog, FORM_CLASS):
             f.write(str(self.cmbLatka.currentIndex())+'\n')
             f.write(str(self.cmbTypVypoctu.currentIndex())+'\n')
             f.write(self.txtZdroj.text()+'\n')        
-            f.write(self.txtTeren.text()+'\n')        
+            f.write(str(self.cmbTeren.currentIndex())+'\n')        
             f.write(self.txtTeren2.text()+'\n')                
             f.write(str(self.cmbReceptory.currentIndex())+'\n')
             f.write(self.txtReceptoryVyska.text()+'\n')
@@ -85,7 +81,7 @@ class MainDialog(QtGui.QDialog, FORM_CLASS):
             self.cmbLatka.setCurrentIndex(int(f.readline()))
             self.cmbTypVypoctu.setCurrentIndex(int(f.readline()))
             self.txtZdroj.setText(f.readline().strip('\n\r'))        
-            self.txtTeren.setText(f.readline().strip('\n\r'))
+            self.cmbTeren.setCurrentIndex(int(f.readline()))
             self.txtTeren2.setText(f.readline().strip('\n\r'))
             self.cmbReceptory.setCurrentIndex(int(f.readline()))
             self.txtReceptoryVyska.setText(f.readline().strip('\n\r'))
@@ -103,6 +99,17 @@ class MainDialog(QtGui.QDialog, FORM_CLASS):
                 try:
                     if layer.type() == QgsMapLayer.VectorLayer:
                         self.cmbReceptory.addItem(layer.name())
+                except:
+                    pass
+    def populateTeren(self):
+        root_node = QgsProject.instance().layerTreeRoot()
+        tree_layers = root_node.findLayers()
+        for tree_layer in tree_layers:
+            layer = tree_layer.layer()
+            if layer.type() != QgsMapLayer.PluginLayer:
+                try:
+                    if layer.type() == QgsMapLayer.RasterLayer:
+                        self.cmbTeren.addItem(layer.name())
                 except:
                     pass
     def calculate(self):
@@ -127,14 +134,21 @@ class MainDialog(QtGui.QDialog, FORM_CLASS):
         else:
             self.main.inicializuj_ref_body(layer)
         fixed_h = None
-        if self.txtTeren.text() == '':
+        layers = QgsMapLayerRegistry.instance().mapLayersByName(self.cmbTeren.currentText()) 
+        layer = ''
+        if not layers:
             if self.txtTeren2.text() == '':
                 self.showMessage(u"Nebyl vybrán terén ani nastavena fixní výška. Není možno počítat.")
                 return
             else:
                 fixed_h = float(self.txtTeren2.text())                                
         else:
-            self.main.inicializuj_teren(self.txtTeren.text())
+            layer = layers[0]
+        if layer == '':
+            self.showMessage(u"Nebyla nalezena vrstva s terénem. Není možno počítat.")
+            return
+        else:
+            self.main.inicializuj_teren(layer.source())
         if self.cmbTypVypoctu.currentIndex() == 1 or self.cmbTypVypoctu.currentIndex() == 2:
             if self.txtRuzice.text() == '':
                 self.showMessage(u"Nebyla vybrána větrná růžice. Není možno počítat.")
