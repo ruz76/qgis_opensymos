@@ -59,7 +59,9 @@ class OpenSYMOS:
         self.toolbar_search.returnPressed.connect(self.calculate)
         self.calculate_btn = QAction(QIcon(os.path.join(os.path.dirname(__file__), "opensymos.png")), "Calculate with SYMOS",  self.iface.mainWindow())
         QObject.connect(self.calculate_btn, SIGNAL("triggered()"), self.calculate)
-        self.toolbar.addActions([self.calculate_btn])
+        self.show_project_btn = QAction(QIcon(os.path.join(os.path.dirname(__file__), "project.png")), "Load Project", self.iface.mainWindow())
+        QObject.connect(self.show_project_btn, SIGNAL("triggered()"), self.load_project)
+        self.toolbar.addActions([self.calculate_btn, self.show_project_btn])
 
         # Create action that will start plugin configuration
         self.action = QAction(QIcon(os.path.join(os.path.dirname(__file__), "opensymos.png")), u"Calculate with SYMOS", self.iface.mainWindow())
@@ -72,15 +74,18 @@ class OpenSYMOS:
         self.dlg = MainDialog()
 
     def unload(self):
-        # Remove the plugin menu item and toolbar
+		# Remove the plugin menu item and toolbar
         self.iface.removePluginMenu(u"&Open Symos", self.action)
         del self.toolbar
 
-
     def calculate(self):
-        locale = ""
         self.dlg.populateTeren()
         self.dlg.populateReceptory()
         self.dlg.show()
         # Run the dialog event loop
         result = self.dlg.exec_()
+
+    def load_project(self):
+        project = QgsProject.instance()
+        project.read(QFileInfo(os.path.dirname(__file__) + '/sample_data/project.qgs'))
+

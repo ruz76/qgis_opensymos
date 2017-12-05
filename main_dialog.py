@@ -52,27 +52,39 @@ class MainDialog(QtGui.QDialog, FORM_CLASS):
         self.btnCalculate.clicked.connect(self.calculate)
         self.btnUlozit.clicked.connect(self.selectConfigFileSave)
         self.btnNacist.clicked.connect(self.selectConfigFileOpen)
+
     def selectZdrojFile(self):
         self.fileDialog = QtGui.QFileDialog(self)
         self.txtZdroj.setText(self.fileDialog.getOpenFileName())
+        self.saveConfig('')
+
     def selectRuziceFile(self):
         self.fileDialog = QtGui.QFileDialog(self)
         self.txtRuzice.setText(self.fileDialog.getOpenFileName())
+        self.saveConfig('')
+
+    def saveConfig(self, path):
+        if path == '':
+            path = self.wd + "config"
+
+        f = open(path, 'w')
+        f.write(str(self.cmbLatka.currentIndex()) + '\n')
+        f.write(str(self.cmbTypVypoctu.currentIndex()) + '\n')
+        f.write(self.txtZdroj.text() + '\n')
+        f.write(str(self.cmbTeren.currentIndex()) + '\n')
+        f.write(self.txtTeren2.text() + '\n')
+        f.write(str(self.cmbReceptory.currentIndex()) + '\n')
+        f.write(self.txtReceptoryVyska.text() + '\n')
+        f.write(self.txtRuzice.text() + '\n')
+        f.write(self.txtLimit.text() + '\n')
+        f.close()
+
     def selectConfigFileSave(self):
         self.fileDialog = QtGui.QFileDialog(self)
         path = self.fileDialog.getSaveFileName()
         if path != '':
-            f = open(path, 'w')        
-            f.write(str(self.cmbLatka.currentIndex())+'\n')
-            f.write(str(self.cmbTypVypoctu.currentIndex())+'\n')
-            f.write(self.txtZdroj.text()+'\n')        
-            f.write(str(self.cmbTeren.currentIndex())+'\n')        
-            f.write(self.txtTeren2.text()+'\n')                
-            f.write(str(self.cmbReceptory.currentIndex())+'\n')
-            f.write(self.txtReceptoryVyska.text()+'\n')
-            f.write(self.txtRuzice.text()+'\n')
-            f.write(self.txtLimit.text()+'\n')
-            f.close()
+            self.saveConfig(path)
+
     def selectConfigFileOpen(self):
         self.fileDialog = QtGui.QFileDialog(self)
         path = self.fileDialog.getOpenFileName()
@@ -88,8 +100,11 @@ class MainDialog(QtGui.QDialog, FORM_CLASS):
             self.txtRuzice.setText(f.readline().strip('\n\r'))
             self.txtLimit.setText(f.readline().strip('\n\r'))                
             f.close()
+
     def init_param(self):
-        self.wd = '/tmp/' #tempfile.gettempdir()
+        #self.wd = '/tmp/' #tempfile.gettempdir()
+        self.wd = os.path.join(os.path.dirname(__file__), "tmp/")
+
     def populateReceptory(self):
         self.cmbReceptory.clear()
         root_node = QgsProject.instance().layerTreeRoot()
@@ -102,6 +117,7 @@ class MainDialog(QtGui.QDialog, FORM_CLASS):
                         self.cmbReceptory.addItem(layer.name())
                 except:
                     pass
+
     def populateTeren(self):
         self.cmbTeren.clear()
         root_node = QgsProject.instance().layerTreeRoot()
@@ -114,6 +130,7 @@ class MainDialog(QtGui.QDialog, FORM_CLASS):
                         self.cmbTeren.addItem(layer.name())
                 except:
                     pass
+
     def calculate(self):
         self.main = Main()
         if self.txtZdroj.text() == '':
@@ -181,6 +198,7 @@ class MainDialog(QtGui.QDialog, FORM_CLASS):
             print "Layer failed to load!"
         else:
             QgsMapLayerRegistry.instance().addMapLayer(layer)
+
     def getReceptory(self):                    
         layer = QgsMapLayerRegistry.instance().mapLayersByName(self.cmbReceptory.currentText())[0]
         iter = layer.getFeatures()
@@ -189,6 +207,7 @@ class MainDialog(QtGui.QDialog, FORM_CLASS):
             print geom.asPoint().x()
             print geom.asPoint().y()
             print "Feature ID %d: " % feature.id()
+
     def showMessage(self, message):                    
         msgBox = QtGui.QMessageBox(self);
         msgBox.setText(message);
