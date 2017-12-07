@@ -50,7 +50,7 @@ class Main:
                 
                 
     def inicializuj_ref_body(self, layer):
-        self.db_ref_body.vytvor_db(layer)
+        self.db_ref_body.vytvor_db(layer, self.db_zdroje)
                   
  
     def generuj_sit(self, tl_x, tl_y, lr_x, lr_y, krok):

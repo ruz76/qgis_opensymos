@@ -13,23 +13,37 @@
 import sys
 import xml.etree.ElementTree as ET
 from ref_bod import ReferencniBod
+import math
 
 class ReferencniBody:
 
     def __init__(self):
         self.ref_body = []
+
+    def check_ref_point(self, zdroje, geom):
+        geomx = geom.asPoint().x()
+        geomy = geom.asPoint().y()
+        near = False
+        for zdroj in zdroje.zdroje:
+            dx = zdroj.x - geomx
+            dy = zdroj.y - geomy
+            distance = math.hypot(dx, dy)
+            if distance < 100:
+                near = True
+        return near
  
- 
-    def vytvor_db(self,layer):
+    def vytvor_db(self,layer,zdroje):
         "nacte referencnich bodu z XML souboru a ulozi je do listu"     
         iter = layer.getFeatures()
         for feature in iter:
             geom = feature.geometry()
-            print "Feature ID %d: " % feature.id()
-            r = ReferencniBod(feature.id(),geom.asPoint().x(),geom.asPoint().y())
-            self.ref_body.append(r)
-            
-    
+            if self.check_ref_point(zdroje, geom):
+                print "Feature ID: " + str(feature.id()) + " is near to sources. It has been excluded from computation"
+            else:
+                print "Feature ID %d: " % feature.id()
+                r = ReferencniBod(feature.id(),geom.asPoint().x(),geom.asPoint().y())
+                self.ref_body.append(r)
+
     def set_z_refbody(self, teren):
         "nastavi z-sourandnici pro ref.body"
         
