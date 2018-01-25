@@ -8,7 +8,7 @@
  The plugin is baed on Open Symos software developed by Karel Psota.
                              -------------------
         begin                : 2016-12-19
-        copyright            : (C) 2016 by Jan Ruzicka, Katerina Ruzickova
+        copyright            : (C) 2016 by Jan Ruzicka, Katerina Ruzickova, Radek Furmanek, Ondrej Kolodziej
         email                : jan.ruzicka.vsb@gmail.com, katerina.ruzickova@vsb.cz
 
  ***************************************************************************/
@@ -27,6 +27,7 @@ import os
 import qgis
 import uuid
 import tempfile
+from shutil import copyfile
 from qgis.core import *
 from main import Main
 
@@ -118,6 +119,27 @@ class MainDialog(QtGui.QDialog, FORM_CLASS):
                 except:
                     pass
 
+    def populateZdroje(self):
+        #TODO osetrit zda ma vrstva potrebne vsechny atributy
+        self.cmbZdroje.clear()
+        root_node = QgsProject.instance().layerTreeRoot()
+        tree_layers = root_node.findLayers()
+        for tree_layer in tree_layers:
+            layer = tree_layer.layer()
+            if layer.type() != QgsMapLayer.PluginLayer:
+                try:
+                    if layer.type() == QgsMapLayer.VectorLayer:
+                        if layer.wkbType() == QGis.WKBPoint:
+                            fields = layer.pendingFields()
+                            zdroj = False
+                            for field in fields:
+                                if field.name() == 'mnozstvi':
+                                    zdroj = True
+                            if zdroj:
+                                self.cmbZdroje.addItem(layer.name())
+                except:
+                    pass
+
     def populateTeren(self):
         self.cmbTeren.clear()
         root_node = QgsProject.instance().layerTreeRoot()
@@ -136,8 +158,18 @@ class MainDialog(QtGui.QDialog, FORM_CLASS):
         if self.txtZdroj.text() == '':
             #TODO
             #http://portal.cenia.cz/irz/unikyPrenosy.jsp?Rok=2015&UnikOvzdusi=1&Typ=bezny&Mnozstvi=*&MetodaC=1&MetodaM=1&MetodaE=1&LatkaNazev=*&Ohlasovatel=&OhlasovatelTyp=subjektNazev&EPRTR=*&NACE=*&Lokalita=cr&Adresa=&Kraj=*&CZNUTS=*&SeskupitDle=subjektu&Razeni=vzestupne&OKEC=*
-            self.showMessage(u"Nebyl vybrán soubor se zdroji. Není možno počítat.")
-            return
+            layers = QgsMapLayerRegistry.instance().mapLayersByName(self.cmbZdroje.currentText())
+            layer = ''
+            if not layers:
+                self.showMessage(u"Nebyla nalezena vrstva se zdroji. Není možno počítat.")
+                return
+            else:
+                layer = layers[0]
+            if layer == '':
+                self.showMessage(u"Nebyla vybrána vrstva se zdroji. Není možno počítat.")
+                return
+            else:
+                self.main.inicializuj_zdroje_vrstva(layer)
         else:                    
             self.main.inicializuj_zdroje(self.txtZdroj.text())
         layers = QgsMapLayerRegistry.instance().mapLayersByName(self.cmbReceptory.currentText()) 
@@ -193,6 +225,15 @@ class MainDialog(QtGui.QDialog, FORM_CLASS):
         print str(tempfile.gettempdir())
         shppath = os.path.join(tempfile.gettempdir(), x + ".shp")
         self.main.export(self.cmbTypVypoctu.currentIndex() + 1,"shp",shppath)
+        copyfile(os.path.join(os.path.dirname(__file__), 'templates/5514.prj'), os.path.join(tempfile.gettempdir(), x + ".prj"))
+        copyfile(os.path.join(os.path.dirname(__file__), 'templates/5514.qpj'), os.path.join(tempfile.gettempdir(), x + ".qpj"))
+        style_name = self.cmbLatka.currentText() + "_" + typ_zkr
+        style_name = style_name.replace("-", "_")
+        if not os.path.exists(os.path.join(os.path.dirname(__file__), 'templates/' + style_name + '.qml')):
+            #copyfile(os.path.join(os.path.dirname(__file__), 'templates/default.qml'), os.path.join(tempfile.gettempdir(), x + ".qml"))
+            QgsMessageLog.logMessage(u"Styl pro " + style_name + u" není nadefinován. Nadefinujte a uložte pod názvem " + style_name + u" do složky templates v adresáři pluginu.", u"Open SYMOS")
+        else:
+            copyfile(os.path.join(os.path.dirname(__file__), 'templates/' + style_name + '.qml'), os.path.join(tempfile.gettempdir(), x + ".qml"))
         layer = QgsVectorLayer(shppath, x, "ogr")
         if not layer.isValid():
             print "Layer failed to load!"

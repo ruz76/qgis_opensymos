@@ -34,6 +34,14 @@ class Main:
             print "Chyba pri nacteni souboru zdroju"
             print "Program ukoncen"
             sys.exit()
+
+    def inicializuj_zdroje_vrstva(self, layer):
+        self.db_zdroje = ZdrojeBod()
+        self.db_zdroje.vytvor_db_vrstva(layer)
+        if len(self.db_zdroje.get_zdroje()) == 0:
+            print "Chyba pri nacteni vrstvy zdroju"
+            print "Program ukoncen"
+            sys.exit()
             
             
     def inicializuj_teren(self, soubor_teren):

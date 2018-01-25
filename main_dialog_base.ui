@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>654</width>
-    <height>584</height>
+    <height>630</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,9 +16,9 @@
   <widget class="QComboBox" name="cmbLatka">
    <property name="geometry">
     <rect>
-     <x>100</x>
+     <x>130</x>
      <y>10</y>
-     <width>541</width>
+     <width>511</width>
      <height>29</height>
     </rect>
    </property>
@@ -116,9 +116,9 @@
   <widget class="QLineEdit" name="txtZdroj">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>90</y>
-     <width>441</width>
+     <x>130</x>
+     <y>140</y>
+     <width>411</width>
      <height>27</height>
     </rect>
    </property>
@@ -127,7 +127,7 @@
    <property name="geometry">
     <rect>
      <x>550</x>
-     <y>90</y>
+     <y>140</y>
      <width>91</width>
      <height>27</height>
     </rect>
@@ -165,9 +165,9 @@
   <widget class="QComboBox" name="cmbTypVypoctu">
    <property name="geometry">
     <rect>
-     <x>100</x>
+     <x>130</x>
      <y>40</y>
-     <width>541</width>
+     <width>511</width>
      <height>29</height>
     </rect>
    </property>
@@ -191,13 +191,13 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>90</y>
-     <width>81</width>
+     <y>140</y>
+     <width>101</width>
      <height>17</height>
     </rect>
    </property>
    <property name="text">
-    <string>Zdroje</string>
+    <string>Zdroje (XML)</string>
    </property>
   </widget>
   <widget class="Line" name="line">
@@ -217,7 +217,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>140</y>
+     <y>190</y>
      <width>81</width>
      <height>17</height>
     </rect>
@@ -230,7 +230,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>120</y>
+     <y>170</y>
      <width>631</width>
      <height>16</height>
     </rect>
@@ -242,9 +242,9 @@
   <widget class="QLineEdit" name="txtTeren2">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>170</y>
-     <width>541</width>
+     <x>130</x>
+     <y>220</y>
+     <width>511</width>
      <height>27</height>
     </rect>
    </property>
@@ -256,8 +256,8 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>170</y>
-     <width>81</width>
+     <y>220</y>
+     <width>91</width>
      <height>17</height>
     </rect>
    </property>
@@ -269,7 +269,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>200</y>
+     <y>250</y>
      <width>631</width>
      <height>16</height>
     </rect>
@@ -282,7 +282,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>230</y>
+     <y>280</y>
      <width>81</width>
      <height>17</height>
     </rect>
@@ -294,9 +294,9 @@
   <widget class="QComboBox" name="cmbReceptory">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>220</y>
-     <width>541</width>
+     <x>130</x>
+     <y>270</y>
+     <width>511</width>
      <height>29</height>
     </rect>
    </property>
@@ -305,7 +305,7 @@
    <property name="geometry">
     <rect>
      <x>550</x>
-     <y>540</y>
+     <y>590</y>
      <width>95</width>
      <height>27</height>
     </rect>
@@ -318,7 +318,7 @@
    <property name="geometry">
     <rect>
      <x>550</x>
-     <y>310</y>
+     <y>360</y>
      <width>95</width>
      <height>27</height>
     </rect>
@@ -331,7 +331,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>290</y>
+     <y>340</y>
      <width>631</width>
      <height>16</height>
     </rect>
@@ -344,7 +344,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>310</y>
+     <y>360</y>
      <width>81</width>
      <height>17</height>
     </rect>
@@ -356,9 +356,9 @@
   <widget class="QLineEdit" name="txtRuzice">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>310</y>
-     <width>441</width>
+     <x>130</x>
+     <y>360</y>
+     <width>411</width>
      <height>27</height>
     </rect>
    </property>
@@ -367,7 +367,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>260</y>
+     <y>310</y>
      <width>81</width>
      <height>17</height>
     </rect>
@@ -379,9 +379,9 @@
   <widget class="QLineEdit" name="txtReceptoryVyska">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>260</y>
-     <width>541</width>
+     <x>130</x>
+     <y>310</y>
+     <width>511</width>
      <height>27</height>
     </rect>
    </property>
@@ -393,7 +393,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>540</y>
+     <y>590</y>
      <width>95</width>
      <height>27</height>
     </rect>
@@ -406,7 +406,7 @@
    <property name="geometry">
     <rect>
      <x>110</x>
-     <y>540</y>
+     <y>590</y>
      <width>95</width>
      <height>27</height>
     </rect>
@@ -419,7 +419,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>360</y>
+     <y>410</y>
      <width>81</width>
      <height>17</height>
     </rect>
@@ -431,9 +431,9 @@
   <widget class="QLineEdit" name="txtLimit">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>360</y>
-     <width>541</width>
+     <x>130</x>
+     <y>410</y>
+     <width>511</width>
      <height>27</height>
     </rect>
    </property>
@@ -442,55 +442,6 @@
    </property>
   </widget>
   <widget class="Line" name="line_5">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>340</y>
-     <width>631</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
-  <widget class="QLabel" name="lblStatus">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>410</y>
-     <width>81</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Stav</string>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="txtStatus">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>440</y>
-     <width>541</width>
-     <height>71</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QProgressBar" name="progressBar">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>410</y>
-     <width>541</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="value">
-    <number>0</number>
-   </property>
-  </widget>
-  <widget class="Line" name="line_6">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -503,12 +454,84 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
+  <widget class="QLabel" name="lblStatus">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>460</y>
+     <width>81</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Stav</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="txtStatus">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>490</y>
+     <width>511</width>
+     <height>71</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QProgressBar" name="progressBar">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>460</y>
+     <width>511</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="value">
+    <number>0</number>
+   </property>
+  </widget>
+  <widget class="Line" name="line_6">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>440</y>
+     <width>631</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
   <widget class="QComboBox" name="cmbTeren">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>140</y>
-     <width>541</width>
+     <x>130</x>
+     <y>190</y>
+     <width>511</width>
+     <height>29</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblZdrojeVrstva">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>100</y>
+     <width>121</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Zdroje (vrstva)</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="cmbZdroje">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>100</y>
+     <width>511</width>
      <height>29</height>
     </rect>
    </property>

@@ -19,6 +19,19 @@ class ZdrojeBod:
     def __init__(self):
         
         self.zdroje = []
+
+    def vytvor_db_vrstva(self, layer):
+        "nacte udaje o zdrojich z vrstvy qgis a ulozi je do listu"
+        iter = layer.getFeatures()
+        for feature in iter:
+            geom = feature.geometry()
+            zdroj = ZdrojBod(feature.id(), geom.asPoint().x(), geom.asPoint().y(),
+                                 feature["mnozstvi"], feature["vyska"],
+                                 feature["teplota"], feature["prumer"],
+                                 feature["rychlost"],
+                                 feature["vyuziti"],
+                                 feature["objem"])
+            self.zdroje.append(zdroj)
     
     def vytvor_db(self,soubor):
         "nacte udaje o zdrojich z XML souboru a ulozi je do listu"
